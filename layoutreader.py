@@ -22,12 +22,12 @@ def armazenar_layout_por_id(id_especificado):
         return layout_especificado
     else:
         return None
-ponto1 = (0,4,5)
-ponto2 = (5,4,5)
-ponto3 = (0,0,5)
-ponto4 = (5,0,5)
-h = ponto2[0] - ponto1[0]
-l = ponto1[1] - ponto3[1]
+ponto1 = (0,4,5) #VERTICE SUPERIOR ESQUERDO DA BANDEJA 
+ponto2 = (5,4,5) #VERTICE SUPERIOR DIREITO DA BANDEJA
+ponto3 = (0,0,5) #VERTICE INFERIOR ESQUERDO DA BANDEJA
+ponto4 = (5,0,5)#VERTICE INFERIOR DIREITO DA BANDEJA
+l = ponto2[0] - ponto1[0] #COMPRIMENTO DA BANDEJA 
+h = ponto1[1] - ponto3[1] #ALTURA DA BANDEJA
 print(h)
 print(l)
 layoutInput = input('Insira layout aqui: ')
@@ -56,7 +56,7 @@ if armazenar_layout_por_id(layoutInput) is not None:
             print(f'coordenadas:{(x,y)}')
             count -= 1 
             continue
-        x += h/layout['nc']
+        x += l/layout['nc']
         print('caso normal')
         print(f'coordenadas:{(x,y)}')
         count -= 1 
