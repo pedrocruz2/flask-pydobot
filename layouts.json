@@ -2,15 +2,15 @@
     "layouts": [
       {
         "id": "layout_01",
-        "nc": 2,
-        "nl": 4,
+        "nc": 4,
+        "nl": 2,
         "remedios": ["dipirona", "paracetamol", "ibuprofeno", "dorflex", "neosaldina", "buscopan", "tylenol", "novalgina"]
       },
       {
         "id": "layout_02",
-        "nc": 3,
+        "nc": 2,
         "nl": 2,
-        "remedios": ["dipirona", "paracetamol", "ibuprofeno", "dorflex", "neosaldina", "buscopan"]
+        "remedios": ["dipirona", "paracetamol", "ibuprofeno", "dorflex"]
       },
       {
         "id": "layout_03",

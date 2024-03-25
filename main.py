@@ -1,11 +1,24 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from functions import *
 from robo import Robo
 app = Flask(__name__)
-robo = Robo('/dev/ttyUSB0')
+robo = Robo('COM5')
 @app.route("/")
 def hello_world():
-    return robo.move_robo_r(100)
+    return 'fodase'
+@app.route('/home', methods=['GET'])
+def returnhome():
+    return robo.origem_global()
+@app.route('/move', methods=['POST'])
+def move_to_specific():
+    data = request.get_json()
+    print(data)
+    xaxis = data.get('xaxis')
+    yaxis = data.get('yaxis')
+    zaxis = data.get('zaxis')
+    print(xaxis,yaxis,zaxis)
+    return robo.move_robo_location(xaxis, yaxis, zaxis)
+
 
 if __name__ == "__main__":
     app.run()

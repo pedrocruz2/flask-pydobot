@@ -1,0 +1,15 @@
+{
+    "id": "layout_01",
+    "nc": 4,
+    "nl": 2,
+    "remedios": [
+        "dipirona",
+        "paracetamol",
+        "ibuprofeno",
+        "dorflex",
+        "neosaldina",
+        "buscopan",
+        "tylenol",
+        "novalgina"
+    ]
+}
