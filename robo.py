@@ -1,8 +1,7 @@
 # Traz a ferramenta serial para apresentar quais portas estão disponíveis
 from serial.tools import list_ports
-import inquirer
 import pydobot
-from yaspin import yaspin
+import requests
 import time
 import json
 import sys
@@ -38,7 +37,28 @@ class Robo():
 
     def move_robo_location(self, xaxis, yaxis, zaxis):
         self.robo.move_to(xaxis, yaxis, zaxis, self.r, wait=True) 
-        print('funcionando movientacao legal entao, o problema provavelmente esta sendo em chamar o robo e inciar ele pra passar a funcao, ja que estamos conseguindo passar corretamente a funcao move_robo_locaiton olha que legal como é daora desenvolver em pydobot filhos da puta pq a ge nte nao usa c++')
+        return "passed"
+    
+    def move_and_beep(self, xaxis, yaxis, zaxis):
+        self.robo.move_to(xaxis, yaxis, zaxis, self.r, wait=True)
+        self.robo.suck(True)
+        self.robo.move_to() #move pra posição da bipagem
+        #response = read_qr_code()
+        response = None
+        match(response):
+            case "valido":
+                #requests.post('http://localhost:5000/medicamento/valido')  
+                self.robo.move_to() #move pra posição dos remedios validos
+                self.robo.suck(False)
+                return "passed"
+            case "invalido":
+                #requests.post('http://localhost:5000/medicamento/invalido')  
+                self.robo.move_to() #move pra posição dos remedios invalidos
+                self.robo.suck(False)
+            case _:
+                print('Erro na leitura do QR Code')
+                return "failed"
+
         return "passed"
 
     def change_speed(self, value):
@@ -77,6 +97,20 @@ class Robo():
     #         self.robo.suck(False)
     #     self.origem_global()
 
+    def colher_4_pontos(self):
+        input('Coloque o robô no ponto 1 e pressione enter')
+        P1 = (self.robo.pose()[0], self.robo.pose()[1], self.robo.pose()[2])
+        print(f"P1: {P1}")
+        input('Coloque o robô no ponto 2 e pressione enter')
+        P2 = (self.robo.pose()[0], self.robo.pose()[1], self.robo.pose()[2])
+        print(f"P2: {P2}")
+        input('Coloque o robô no ponto 3 e pressione enter')
+        P3 = (self.robo.pose()[0], self.robo.pose()[1], self.robo.pose()[2])
+        print(f"P3: {P3}")
+        input('Coloque o robô no ponto 4 e pressione enter')
+        P4 = (self.robo.pose()[0], self.robo.pose()[1], self.robo.pose()[2])
+        print(f"P4: {P4}")
+        return P1, P2, P3, P4
     
     def pegar_medicamento_inadequado(self):
         posicoes = ler_json('./posicoes.json')

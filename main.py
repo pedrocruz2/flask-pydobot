@@ -8,7 +8,8 @@ def hello_world():
     return 'fodase'
 @app.route('/home', methods=['GET'])
 def returnhome():
-    return robo.origem_global()
+    #return robo.origem_global()
+    return None
 @app.route('/move', methods=['POST'])
 def move_to_specific():
     data = request.get_json()
@@ -17,7 +18,7 @@ def move_to_specific():
     yaxis = data.get('yaxis')
     zaxis = data.get('zaxis')
     print(xaxis,yaxis,zaxis)
-    return robo.move_robo_location(xaxis, yaxis, zaxis)
+    return None
 
 
 if __name__ == "__main__":
